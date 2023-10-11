@@ -31,7 +31,7 @@ publishing {
 
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.danielgergely.kgl"
+            groupId = "org.qinetik.kgl"
             artifactId = "kgl-lwjgl"
             version = currentVersion
 

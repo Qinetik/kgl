@@ -8,7 +8,7 @@ repositories {
     mavenCentral()
 }
 
-group = "com.danielgergely.kgl"
+group = "org.qinetik.kgl"
 version = currentVersion
 
 kotlin {
@@ -23,8 +23,8 @@ kotlin {
         }
     }
 
-    linuxX64()
-    mingwX64()
+//    linuxX64()
+//    mingwX64()
 
     if (isMacOs()) {
         macosX64()
@@ -77,8 +77,8 @@ kotlin {
             }
         }
 
-        val linuxX64Main by getting { }
-        val mingwX64Main by getting { }
+//        val linuxX64Main by getting { }
+//        val mingwX64Main by getting { }
 
         val appleOnlySourceSets = if (isMacOs()) {
             val macosX64Main by getting { }
@@ -90,18 +90,18 @@ kotlin {
             listOf()
         }
 
-        val nativeMain by sourceSets.creating {
-            dependsOn(commonMain)
+//        val nativeMain by sourceSets.creating {
+//            dependsOn(commonMain)
 
-            linuxX64Main.dependsOn(this)
-            mingwX64Main.dependsOn(this)
+//            linuxX64Main.dependsOn(this)
+//            mingwX64Main.dependsOn(this)
 
-            appleOnlySourceSets.forEach { it.dependsOn(this) }
-        }
+//            appleOnlySourceSets.forEach { it.dependsOn(this) }
+//        }
 
-        all {
-            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
-        }
+//        all {
+//            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+//        }
     }
 }
 
@@ -109,4 +109,15 @@ fun isMacOs() = org.gradle.internal.os.OperatingSystem.current().isMacOsX
 
 publishing {
     addRepositoryIfPresent(project)
+}
+
+android {
+    compileSdk = 33
+    defaultConfig {
+        minSdk = 33
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }

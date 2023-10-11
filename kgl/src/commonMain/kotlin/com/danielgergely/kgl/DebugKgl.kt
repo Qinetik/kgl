@@ -391,6 +391,13 @@ public class DebugKgl(
         return ret
     }
 
+    override fun texImage2D(target: Int, level: Int, internalFormat: Int, border: Int, resource: TextureAsset) {
+        runBefore("texImage2D-2")
+        val ret = kgl.texImage2D(target, level, internalFormat, border, resource)
+        runAfter("texImage2D-2")
+        return ret
+    }
+
     override fun texImage2D(
         target: Int,
         level: Int,
@@ -405,6 +412,40 @@ public class DebugKgl(
         runBefore("texImage2D")
         val ret = kgl.texImage2D(target, level, internalFormat, width, height, border, format, type, buffer)
         runAfter("texImage2D")
+        return ret
+    }
+
+    override fun texSubImage2D(
+        target: Int,
+        level: Int,
+        xOffset: Int,
+        yOffset: Int,
+        width: Int,
+        height: Int,
+        format: Int,
+        type: Int,
+        resource: TextureAsset
+    ) {
+        runBefore("texSubImage2D")
+        val ret = kgl.texSubImage2D(target, level, xOffset, yOffset, width, height, format, type, resource)
+        runAfter("texSubImage2D")
+        return ret
+    }
+
+    override fun texSubImage2D(
+        target: Int,
+        level: Int,
+        xOffset: Int,
+        yOffset: Int,
+        width: Int,
+        height: Int,
+        format: Int,
+        type: Int,
+        buffer: Buffer
+    ) {
+        runBefore("texSubImage2D-2")
+        val ret = kgl.texSubImage2D(target, level, xOffset, yOffset, width, height, format, type, buffer)
+        runAfter("texSubImage2D-2")
         return ret
     }
 

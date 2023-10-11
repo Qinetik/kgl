@@ -47,7 +47,7 @@ afterEvaluate {
             create<MavenPublication>("maven") {
                 from(project.components["release"])
 
-                groupId = "com.danielgergely.kgl"
+                group = "org.qinetik.kgl"
                 artifactId = "kgl-android"
                 version = currentVersion
             }

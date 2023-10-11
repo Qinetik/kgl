@@ -1,5 +1,6 @@
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
+import org.gradle.kotlin.dsl.maven
 import java.net.URI
 
 data class PublishingSetup(
@@ -31,6 +32,20 @@ fun PublishingExtension.addRepositoryIfPresent(project: Project) {
                     username = publishingSetup.username
                     password = publishingSetup.password
                 }
+            }
+        }
+    }
+
+    repositories {
+        maven("https://maven.pkg.github.com/Qinetik/kgl") {
+            name = "GithubPackages"
+            try {
+                credentials {
+                    username = (System.getenv("GPR_USER")).toString()
+                    password = (System.getenv("GPR_API_KEY")).toString()
+                }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
             }
         }
     }
