@@ -11,7 +11,7 @@ data class VersionInfo(
 
 fun versionInfo(): VersionInfo {
     return VersionInfo(
-        versionName = "6.6.5",
+        versionName = "6.6.6",
         type = VersionType.RELEASE
     )
 //    val pushedTag = System.getenv("PUSHED_TAG")
