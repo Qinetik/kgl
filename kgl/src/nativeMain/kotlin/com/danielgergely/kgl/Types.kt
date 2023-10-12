@@ -12,7 +12,11 @@ public actual typealias GlBuffer = Int
 public actual typealias Texture = Int
 
 public actual interface TextureAsset {
+
+    public actual fun isValid() : Boolean
+
     public actual fun dispose()
+
 }
 
 public actual class TextureResource(
@@ -22,9 +26,15 @@ public actual class TextureResource(
     public val type: Int,
     public val data: Buffer,
 ) : TextureAsset {
+
+    override fun isValid(): Boolean {
+        return true
+    }
+
     public override fun dispose() {
         data.dispose()
     }
+
 }
 
 public actual typealias VertexArrayObject = Int

@@ -18,6 +18,9 @@ public actual typealias Renderbuffer = Int
 
 public actual interface TextureAsset {
 
+    /** calls isRecycled on bitmap **/
+    public actual fun isValid() : Boolean
+
     public actual fun dispose()
 
     public fun texImage2D(kgl : Kgl, target: Int, level: Int, internalFormat: Int, border: Int)
@@ -43,6 +46,10 @@ public actual class TextureResource(
     public val type: Int,
     public val data: Buffer,
 ) : TextureAsset {
+
+    override fun isValid(): Boolean {
+        return true
+    }
 
     public override fun dispose() {}
 
